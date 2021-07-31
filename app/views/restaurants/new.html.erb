@@ -1,0 +1,11 @@
+<ul class="list-group">
+  <li class="list-group-item">
+    <%= simple_form_for @restaurant do |f| %>
+      <%= f.input :name %>
+      <%= f.input :address %>
+      <%= f.input :phone_number %>
+      <%= f.input :category, as: :select, collection: ['chinese', 'italian', 'japanese', 'french', 'belgian'], prompt: "Select one" %>
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    <% end %>
+  </li>
+</ul>
