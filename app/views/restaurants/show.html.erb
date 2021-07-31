@@ -1,14 +1,20 @@
 <ul class="list-group">
-<li class="list-group-item d-flex justify-content-between align-items-start">
-  <div>
+<li class="list-group-item">
+    <h4>Restaurant:</h4>
     <strong>Name: </strong> <%= @restaurant.name %> <br />
     <strong>Address: </strong> <%= @restaurant.address %> <br />
     <strong>Phone number: </strong> <%= @restaurant.phone_number %> <br />
     <strong>Category: </strong> <%= @restaurant.category.capitalize %>
-  </div>
-  <%= link_to "Add review", new_restaurant_review_path(@restaurant), class: "btn btn-primary"%>
 </li>
-<li class="list-group-item"><strong>Reviews:</strong></li>
+<li class="list-group-item">
+  <h4>Add a review:</h4>
+    <%= simple_form_for [@restaurant, @review] do |f| %>
+      <%= f.input :content %>
+      <%= f.input :rating, collection: 0..5, prompt: "Select one" %>
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    <% end %>
+</li>
+<li class="list-group-item"><h4>Reviews:</h4></li>
 <% @restaurant.reviews.each do |review| %>
 <li class="list-group-item"> <%= simple_format(review.content) %> <strong>Rating:</strong> <%= review.rating.to_s %>  </li>
 <% end %>
